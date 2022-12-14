@@ -47,5 +47,3 @@ class LibraryController extends CI_Controller{
 
 
 }
-
-?>
