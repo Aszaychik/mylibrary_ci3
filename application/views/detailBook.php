@@ -17,7 +17,8 @@ if(empty($book['thumb'])){
                 <div class="post-heading">
                     <h1><?= $book['title'];?></h1>
                     <span class="meta">
-                        Posted on <?= $book['date'];?>
+                        Publish at <?= $book['publish_year'];?>
+						By <?= $book['author'];?>
                     </span>
                 </div>
             </div>

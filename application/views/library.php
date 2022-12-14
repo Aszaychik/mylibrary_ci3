@@ -35,7 +35,8 @@ $this->load->view('partials/header');
 
 						<div class="my-5">
 							<a href="<?= site_url("LibraryController/getDetailBook/". $book['id']);?>" class="text-capitalize"><h3><?= $book['title'];?></h3></a>
-							<p class="post-meta">Posted on <?= date('d-M-Y',$book['date']); ?>
+							<p class="post-meta text-primary">Publish at <?= $book['publish_year']?>
+							<span>By <?= $book['author']?></span>
 														
 													</p>
 							<figure class="d-flex justify-content-center align-items-center flex-column gap-5 my-3">
