@@ -4,7 +4,7 @@ $this->load->view('partials/header');
 <!-- Page Header-->
 <?php 
 if(empty($book['thumb'])){
-    $cover = 'https://picsum.photos';
+    $cover = 'https://picsum.photos/1080/1920';
 
 }else{
     $cover = base_url() . 'uploads/thumbs/' . $book['thumb'];
