@@ -14,16 +14,58 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping data for table db_library.tb_admins: ~0 rows (approximately)
+-- Dumping structure for table db_library.tb_admins
+DROP TABLE IF EXISTS `tb_admins`;
+CREATE TABLE IF NOT EXISTS `tb_admins` (
+  `id` varchar(100) NOT NULL DEFAULT (uuid()),
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table db_library.tb_admins: ~1 rows (approximately)
 DELETE FROM `tb_admins`;
 INSERT INTO `tb_admins` (`id`, `username`, `password`) VALUES
 	('c4f7ff34-70ac-11ed-a495-b9e03878af06', 'admin', 'admin');
 
--- Dumping data for table db_library.tb_books: ~0 rows (approximately)
+-- Dumping structure for table db_library.tb_books
+DROP TABLE IF EXISTS `tb_books`;
+CREATE TABLE IF NOT EXISTS `tb_books` (
+  `id` varchar(100) NOT NULL DEFAULT (uuid()),
+  `author` varchar(100) DEFAULT NULL,
+  `publisher` varchar(100) DEFAULT NULL,
+  `id_genre` varchar(100) DEFAULT NULL,
+  `title` varchar(100) NOT NULL,
+  `publish_year` varchar(4) DEFAULT NULL,
+  `thumb` varchar(100) DEFAULT NULL,
+  `date` int NOT NULL,
+  `stock` int NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table db_library.tb_books: ~2 rows (approximately)
 DELETE FROM `tb_books`;
 INSERT INTO `tb_books` (`id`, `author`, `publisher`, `id_genre`, `title`, `publish_year`, `thumb`, `date`, `stock`, `description`) VALUES
 	('ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 'Muklis', 'Garena', '1', 'Java sangat mudah', '2002', '83e8872c-9aa0-48ee-a2ee-85177abed344.jpg', 1670061786, 800, 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde consequatur blanditiis nemo dolore aliquam minus ab cupiditate at iure excepturi, eius nihil hic quam? Soluta iste nostrum possimus obcaecati tenetur?'),
 	('f10929a9-7bc4-11ed-b649-0a0027000013', 'Adolf Hitler', 'Franz Eher Nachfolger GmbH', '1', 'Mein Kampf', '1925', 'Mein_Kampf.jpeg', 1676969420, 7, 'Mein Kampf is the autobiography and political treatise of German dictator Adolf Hitler. The title of the book translates to “My Struggle” in German. Published in 1925, the book contains two volumes and was mostly written during Hitler’s imprisonment following his failed Munich Putsch coup attempt in 1923. The book contains details about the Nazi leader’s early life and outlines his political ideology and plans for Germany’s future. The book was very popular during the Third Reich, the period during which Hitler ruled Germany. After his death in 1945, however, the state of Bavaria banned the book and it was not published in Germany again until 2016. The book remains deeply controversial today due to its anti-Semitic content.');
+
+-- Dumping structure for table db_library.tb_borrowing
+DROP TABLE IF EXISTS `tb_borrowing`;
+CREATE TABLE IF NOT EXISTS `tb_borrowing` (
+  `id` varchar(100) NOT NULL DEFAULT (uuid()),
+  `id_book` varchar(100) NOT NULL,
+  `borrow_date` int NOT NULL,
+  `returning_date` int NOT NULL,
+  `qty` int NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `mobile_phone` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `status` varchar(10) DEFAULT 'borrowing',
+  PRIMARY KEY (`id`),
+  KEY `fk_borrowing_books` (`id_book`),
+  CONSTRAINT `fk_borrowing_books` FOREIGN KEY (`id_book`) REFERENCES `tb_books` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table db_library.tb_borrowing: ~7 rows (approximately)
 DELETE FROM `tb_borrowing`;
@@ -36,13 +78,35 @@ INSERT INTO `tb_borrowing` (`id`, `id_book`, `borrow_date`, `returning_date`, `q
 	('c74c3fdb-73da-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 1670161900, 1670766700, 11, 'MOCHAMMAD FAJRIN', '11', 'MENDALAN', 'returned'),
 	('e7327ba5-73db-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 1670162383, 1670767183, 555, 'MOCHAMMAD FAJRIN', '555', 'MENDALAN', 'returned');
 
+-- Dumping structure for table db_library.tb_genres
+DROP TABLE IF EXISTS `tb_genres`;
+CREATE TABLE IF NOT EXISTS `tb_genres` (
+  `id` varchar(100) NOT NULL DEFAULT (uuid()),
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 -- Dumping data for table db_library.tb_genres: ~2 rows (approximately)
 DELETE FROM `tb_genres`;
 INSERT INTO `tb_genres` (`id`, `name`) VALUES
 	('1', 'education'),
 	('2', 'Sci-fi');
 
--- Dumping data for table db_library.tb_returning: ~0 rows (approximately)
+-- Dumping structure for table db_library.tb_returning
+DROP TABLE IF EXISTS `tb_returning`;
+CREATE TABLE IF NOT EXISTS `tb_returning` (
+  `id` varchar(100) NOT NULL DEFAULT (uuid()),
+  `id_book` varchar(100) NOT NULL,
+  `id_borrowing` varchar(100) NOT NULL,
+  `late_fee` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_returning_book` (`id_book`),
+  KEY `fk_returning_borrowing` (`id_borrowing`),
+  CONSTRAINT `fk_returning_book` FOREIGN KEY (`id_book`) REFERENCES `tb_books` (`id`),
+  CONSTRAINT `fk_returning_borrowing` FOREIGN KEY (`id_borrowing`) REFERENCES `tb_borrowing` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table db_library.tb_returning: ~6 rows (approximately)
 DELETE FROM `tb_returning`;
 INSERT INTO `tb_returning` (`id`, `id_book`, `id_borrowing`, `late_fee`) VALUES
 	('a6ce1248-73dc-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', '3abb6abb-73db-11ed-8226-cb08c4c1791c', 2001),
