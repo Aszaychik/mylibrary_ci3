@@ -1,6 +1,15 @@
 <?php
 class BooksModel extends CI_Model
 {
+	public function getBooks()
+	{
+		return $this->db->get("tb_books");
+	}
+	public function getDetail($field, $value)
+	{
+		$this->db->where($field, $value);
+		return $this->db->get("tb_books");
+	}
     public function viewBooks()
     {
         $this->db->select('b.id as id')
