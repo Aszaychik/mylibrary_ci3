@@ -31,7 +31,7 @@ class Dashboard extends CI_Controller
         $data['returns'] = $this->BooksModel->fetchAllReturningData()->result();
         $this->load->view('librarian/templates/header');
         $this->load->view('librarian/templates/navbar');
-        $this->load->view('librarian/dashboard/activity/Returning_data', $data);
+        $this->load->view('librarian/dashboard/activity/Returning_Data', $data);
         $this->load->view('librarian/templates/footer');
     }
 }
