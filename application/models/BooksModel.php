@@ -3,6 +3,7 @@ class BooksModel extends CI_Model
 {
 	public function getBooks()
 	{
+		$this->db->order_by("date", "desc");
 		return $this->db->get("tb_books");
 	}
 	public function getDetail($field, $value)

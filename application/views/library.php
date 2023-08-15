@@ -38,14 +38,10 @@ $this->load->view('partials/header');
                             <h3><?= $book['title']; ?></h3>
                         </a>
                         <p class="post-meta">Posted on <?= date('d-M-Y', $book['date']); ?>
-
                         </p>
                         <figure class="d-flex justify-content-center align-items-center flex-column gap-5 my-3">
                             <img class="img-fluid img-thumbnail w-50" src="<?= base_url("uploads/thumbs/" . $book['thumb']); ?>" alt="<?= base_url("uploads/thumbs/" . $book['thumb']); ?>">
                         </figure>
-                    </div>
-
-
 
                 </div>
             <?php } ?>

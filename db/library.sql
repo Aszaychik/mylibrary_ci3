@@ -5,20 +5,15 @@
 -- Server version	10.4.27-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Table structure for table `tb_admins`
---
-
+-- Dumping structure for table db_library.tb_admins
 DROP TABLE IF EXISTS `tb_admins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -34,16 +29,12 @@ CREATE TABLE `tb_admins` (
 -- Dumping data for table `tb_admins`
 --
 
-LOCK TABLES `tb_admins` WRITE;
-/*!40000 ALTER TABLE `tb_admins` DISABLE KEYS */;
-INSERT INTO `tb_admins` VALUES ('c4f7ff34-70ac-11ed-a495-b9e03878af06','admin','admin');
-/*!40000 ALTER TABLE `tb_admins` ENABLE KEYS */;
-UNLOCK TABLES;
+-- Dumping data for table db_library.tb_admins: ~1 rows (approximately)
+DELETE FROM `tb_admins`;
+INSERT INTO `tb_admins` (`id`, `username`, `password`) VALUES
+	('c4f7ff34-70ac-11ed-a495-b9e03878af06', 'admin', 'admin');
 
---
--- Table structure for table `tb_books`
---
-
+-- Dumping structure for table db_library.tb_books
 DROP TABLE IF EXISTS `tb_books`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -75,7 +66,7 @@ UNLOCK TABLES;
 --
 -- Table structure for table `tb_borrowing`
 --
-
+-- Dumping structure for table db_library.tb_borrowing
 DROP TABLE IF EXISTS `tb_borrowing`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -108,6 +99,18 @@ UNLOCK TABLES;
 -- Table structure for table `tb_genres`
 --
 
+-- Dumping data for table db_library.tb_borrowing: ~7 rows (approximately)
+DELETE FROM `tb_borrowing`;
+INSERT INTO `tb_borrowing` (`id`, `id_book`, `borrow_date`, `returning_date`, `qty`, `name`, `mobile_phone`, `address`, `status`) VALUES
+	('3abb6abb-73db-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 1670162094, 1670766894, 2, 'MOCHAMMAD FAJRIN', '0881219021', 'MENDALAN', 'returned'),
+	('51e01d10-73db-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 1670162133, 1670766933, 11, 'MOCHAMMAD FAJRIN', '22', 'MENDALAN', 'returned'),
+	('73c734ca-7439-11ed-8f1e-4edf74a7e790', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 1670202562, 1670807362, 100, 'MOCHAMMAD FAJRIN', '0881219021', 'MENDALAN', 'borrowing'),
+	('8fea773d-73d3-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 1670158801, 1670763601, 10, 'MOCHAMMAD FAJRIN', '21212121', 'MENDALAN', 'returned'),
+	('c5b149f1-73dc-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 1670162757, 1670767557, 100, 'MOCHAMMAD FAJRIN', '0881219021', 'MENDALAN', 'returned'),
+	('c74c3fdb-73da-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 1670161900, 1670766700, 11, 'MOCHAMMAD FAJRIN', '11', 'MENDALAN', 'returned'),
+	('e7327ba5-73db-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 1670162383, 1670767183, 555, 'MOCHAMMAD FAJRIN', '555', 'MENDALAN', 'returned');
+
+-- Dumping structure for table db_library.tb_genres
 DROP TABLE IF EXISTS `tb_genres`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -128,10 +131,13 @@ INSERT INTO `tb_genres` VALUES ('1','education'),('2','Sci-fi');
 /*!40000 ALTER TABLE `tb_genres` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `tb_returning`
---
+-- Dumping data for table db_library.tb_genres: ~2 rows (approximately)
+DELETE FROM `tb_genres`;
+INSERT INTO `tb_genres` (`id`, `name`) VALUES
+	('1', 'education'),
+	('2', 'Sci-fi');
 
+-- Dumping structure for table db_library.tb_returning
 DROP TABLE IF EXISTS `tb_returning`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
