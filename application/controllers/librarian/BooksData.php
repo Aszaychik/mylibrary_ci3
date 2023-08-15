@@ -4,7 +4,7 @@ class BooksData extends CI_Controller
     public function insertBook()
     {
         $this->form_validation->set_rules('title', 'Book title', 'required');
-        $thumb = $this->input->post('thumb');
+
         if ($this->form_validation->run() == false) {
             $data['books'] = $this->BooksModel->viewBooks()->result();
             $data['genres'] = $this->BooksModel->viewGenres()->result();
@@ -13,11 +13,12 @@ class BooksData extends CI_Controller
             $this->load->view('librarian/dashboard/books/Books_data', $data);
             $this->load->view('librarian/templates/footer');
         } else {
+            $thumb = $_FILES['thumb']['name'];
             if ($thumb = '') {
             } else {
-
                 $config['upload_path'] = './uploads/thumbs';
                 $config['allowed_types'] = 'jpg|jpeg|png';
+
                 $this->load->library('upload', $config);
 
                 if (!$this->upload->do_upload('thumb')) {
@@ -36,6 +37,7 @@ class BooksData extends CI_Controller
                 'thumb' => $thumb,
                 'date' => round(microtime(true))
             );
+
             $this->BooksModel->insertBook($data);
             redirect('librarian/Dashboard/booksData');
         }
@@ -50,10 +52,10 @@ class BooksData extends CI_Controller
         $this->load->view('librarian/dashboard/books/Update_book', $data);
         $this->load->view('librarian/templates/footer');
     }
+
     public function proccessUpdateBook($id)
     {
         $this->form_validation->set_rules('title', 'Book title', 'required');
-        $thumb = $this->input->post('thumb');
         if ($this->form_validation->run() == false) {
             $data['books'] = $this->BooksModel->viewBooks()->result();
             $data['genres'] = $this->BooksModel->viewGenres()->result();
@@ -62,6 +64,8 @@ class BooksData extends CI_Controller
             $this->load->view('librarian/dashboard/books/Books_data', $data);
             $this->load->view('librarian/templates/footer');
         } else {
+            $thumb = $_FILES['thumb']['name'];
+            var_dump($thumb);
             if ($thumb = '') {
             } else {
 
@@ -83,7 +87,8 @@ class BooksData extends CI_Controller
                 'title' => $this->input->post('title'),
                 'stock' => $this->input->post('stock'),
                 'publish_year' => $this->input->post('publish_year'),
-                'thumb' => $thumb
+                'thumb' => $thumb,
+                'description' => $this->input->post('description')
             );
             $this->BooksModel->updateBookById($id, $data);
             redirect('librarian/Dashboard/booksData');

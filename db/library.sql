@@ -1,9 +1,8 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               8.0.30 - MySQL Community Server - GPL
--- Server OS:                    Win64
--- HeidiSQL Version:             12.1.0.6537
--- --------------------------------------------------------
+-- MariaDB dump 10.19  Distrib 10.4.27-MariaDB, for Linux (x86_64)
+--
+-- Host: localhost    Database: db_library
+-- ------------------------------------------------------
+-- Server version	10.4.27-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
@@ -16,12 +15,19 @@
 
 -- Dumping structure for table db_library.tb_admins
 DROP TABLE IF EXISTS `tb_admins`;
-CREATE TABLE IF NOT EXISTS `tb_admins` (
-  `id` varchar(100) NOT NULL DEFAULT (uuid()),
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_admins` (
+  `id` varchar(100) NOT NULL DEFAULT uuid(),
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_admins`
+--
 
 -- Dumping data for table db_library.tb_admins: ~1 rows (approximately)
 DELETE FROM `tb_admins`;
@@ -30,34 +36,46 @@ INSERT INTO `tb_admins` (`id`, `username`, `password`) VALUES
 
 -- Dumping structure for table db_library.tb_books
 DROP TABLE IF EXISTS `tb_books`;
-CREATE TABLE IF NOT EXISTS `tb_books` (
-  `id` varchar(100) NOT NULL DEFAULT (uuid()),
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_books` (
+  `id` varchar(100) NOT NULL DEFAULT uuid(),
   `author` varchar(100) DEFAULT NULL,
   `publisher` varchar(100) DEFAULT NULL,
   `id_genre` varchar(100) DEFAULT NULL,
   `title` varchar(100) NOT NULL,
   `publish_year` varchar(4) DEFAULT NULL,
   `thumb` varchar(100) DEFAULT NULL,
-  `date` int NOT NULL,
-  `stock` int NOT NULL,
-  `description` text,
+  `date` int(11) NOT NULL,
+  `stock` int(11) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Dumping data for table db_library.tb_books: ~2 rows (approximately)
-DELETE FROM `tb_books`;
-INSERT INTO `tb_books` (`id`, `author`, `publisher`, `id_genre`, `title`, `publish_year`, `thumb`, `date`, `stock`, `description`) VALUES
-	('ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 'Muklis', 'Garena', '1', 'Java sangat mudah', '2002', '83e8872c-9aa0-48ee-a2ee-85177abed344.jpg', 1670061786, 800, 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde consequatur blanditiis nemo dolore aliquam minus ab cupiditate at iure excepturi, eius nihil hic quam? Soluta iste nostrum possimus obcaecati tenetur?'),
-	('f10929a9-7bc4-11ed-b649-0a0027000013', 'Adolf Hitler', 'Franz Eher Nachfolger GmbH', '1', 'Mein Kampf', '1925', 'Mein_Kampf.jpeg', 1676969420, 7, 'Mein Kampf is the autobiography and political treatise of German dictator Adolf Hitler. The title of the book translates to “My Struggle” in German. Published in 1925, the book contains two volumes and was mostly written during Hitler’s imprisonment following his failed Munich Putsch coup attempt in 1923. The book contains details about the Nazi leader’s early life and outlines his political ideology and plans for Germany’s future. The book was very popular during the Third Reich, the period during which Hitler ruled Germany. After his death in 1945, however, the state of Bavaria banned the book and it was not published in Germany again until 2016. The book remains deeply controversial today due to its anti-Semitic content.');
+--
+-- Dumping data for table `tb_books`
+--
 
+LOCK TABLES `tb_books` WRITE;
+/*!40000 ALTER TABLE `tb_books` DISABLE KEYS */;
+INSERT INTO `tb_books` VALUES ('03930125-7c24-11ed-ae79-8030499c85f7','Agus wibu','Garena','1','Java sangat menyenangkan','100','download_(4).jpeg',1671072964,94,'Vivamus himenaeos pede pellentesque turpis volutpat congue montes enim tincidunt commodo fermentum venenatis urna proin ornare euismod fringilla ultrices parturient'),('2c93a42b-7c26-11ed-ae79-8030499c85f7','Orochimaru','Elex media','1','10 Dosa besar hiruzen','2007','images_(3).jpeg',1671073892,NULL,NULL),('306fd63f-7c25-11ed-ae79-8030499c85f7','Jhone doe','Elex media','1','Java sangat Sulit ','2001','download_(5).jpeg',1671073469,NULL,NULL),('567d445a-7c24-11ed-ae79-8030499c85f7','Jhone doe','Garena','1','Ayo belajar java','2010','download_(3).jpeg',1671073103,NULL,NULL),('5aaca889-7c25-11ed-ae79-8030499c85f7','Jhone doe','Elex media','1','Filosofi Belajar Java','2001','download.jpeg',1671073540,NULL,NULL),('7fec2437-7c25-11ed-ae79-8030499c85f7','Alok','Moonton','1','Java adalah kunci','2017','download_(2).jpeg',1671073602,NULL,NULL),('9c1fdd43-7c25-11ed-ae79-8030499c85f7','Mukliss','Garena','1','Mengapa belajar java?','2001','images.jpeg',1671073649,0,''),('ae9a28fc-72f1-11ed-85c7-1570f26e4f41','Muklis','Garena','1','Java sangat mudah','2002','download_(1).jpeg',1670061786,800,'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde consequatur blanditiis nemo dolore aliquam minus ab cupiditate at iure excepturi, eius nihil hic quam? Soluta iste nostrum possimus obcaecati tenetur?'),('dc95dcf1-7c25-11ed-ae79-8030499c85f7','Abdul Kadir','Sinar Bulan','1','Pentingnya belajar java GUI','2001','images_(1)1.jpeg',1671073757,NULL,NULL),('f10929a9-7bc4-11ed-b649-0a0027000013','Adolf Hitler','Franz Eher Nachfolger GmbH','1','Mein Kampf','1925','download_(8)1.jpeg',1676969420,7,'Mein Kampf is the autobiography and political treatise of German dictator Adolf Hitler. The title of the book translates to “My Struggle” in German. Published in 1925, the book contains two volumes and was mostly written during Hitler’s imprisonment following his failed Munich Putsch coup attempt in 1923. The book contains details about the Nazi leader’s early life and outlines his political ideology and plans for Germany’s future. The book was very popular during the Third Reich, the period during which Hitler ruled Germany. After his death in 1945, however, the state of Bavaria banned the book and it was not published in Germany again until 2016. The book remains deeply controversial today due to its anti-Semitic content.'),('ffc3d441-7c25-11ed-ae79-8030499c85f7','Surya Purnama','Garena','1','Kenapa java itu sangat menyenangkan','2001','images_(2)1.jpeg',1671073817,NULL,NULL);
+/*!40000 ALTER TABLE `tb_books` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_borrowing`
+--
 -- Dumping structure for table db_library.tb_borrowing
 DROP TABLE IF EXISTS `tb_borrowing`;
-CREATE TABLE IF NOT EXISTS `tb_borrowing` (
-  `id` varchar(100) NOT NULL DEFAULT (uuid()),
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_borrowing` (
+  `id` varchar(100) NOT NULL DEFAULT uuid(),
   `id_book` varchar(100) NOT NULL,
-  `borrow_date` int NOT NULL,
-  `returning_date` int NOT NULL,
-  `qty` int NOT NULL,
+  `borrow_date` bigint(20) NOT NULL,
+  `returning_date` bigint(20) NOT NULL,
+  `qty` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `mobile_phone` varchar(100) NOT NULL,
   `address` varchar(100) NOT NULL,
@@ -65,7 +83,21 @@ CREATE TABLE IF NOT EXISTS `tb_borrowing` (
   PRIMARY KEY (`id`),
   KEY `fk_borrowing_books` (`id_book`),
   CONSTRAINT `fk_borrowing_books` FOREIGN KEY (`id_book`) REFERENCES `tb_books` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_borrowing`
+--
+
+LOCK TABLES `tb_borrowing` WRITE;
+/*!40000 ALTER TABLE `tb_borrowing` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_borrowing` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_genres`
+--
 
 -- Dumping data for table db_library.tb_borrowing: ~7 rows (approximately)
 DELETE FROM `tb_borrowing`;
@@ -80,11 +112,24 @@ INSERT INTO `tb_borrowing` (`id`, `id_book`, `borrow_date`, `returning_date`, `q
 
 -- Dumping structure for table db_library.tb_genres
 DROP TABLE IF EXISTS `tb_genres`;
-CREATE TABLE IF NOT EXISTS `tb_genres` (
-  `id` varchar(100) NOT NULL DEFAULT (uuid()),
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_genres` (
+  `id` varchar(100) NOT NULL DEFAULT uuid(),
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_genres`
+--
+
+LOCK TABLES `tb_genres` WRITE;
+/*!40000 ALTER TABLE `tb_genres` DISABLE KEYS */;
+INSERT INTO `tb_genres` VALUES ('1','education'),('2','Sci-fi');
+/*!40000 ALTER TABLE `tb_genres` ENABLE KEYS */;
+UNLOCK TABLES;
 
 -- Dumping data for table db_library.tb_genres: ~2 rows (approximately)
 DELETE FROM `tb_genres`;
@@ -94,30 +139,37 @@ INSERT INTO `tb_genres` (`id`, `name`) VALUES
 
 -- Dumping structure for table db_library.tb_returning
 DROP TABLE IF EXISTS `tb_returning`;
-CREATE TABLE IF NOT EXISTS `tb_returning` (
-  `id` varchar(100) NOT NULL DEFAULT (uuid()),
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_returning` (
+  `id` varchar(100) NOT NULL DEFAULT uuid(),
   `id_book` varchar(100) NOT NULL,
   `id_borrowing` varchar(100) NOT NULL,
-  `late_fee` int NOT NULL,
+  `late_fee` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_returning_book` (`id_book`),
   KEY `fk_returning_borrowing` (`id_borrowing`),
   CONSTRAINT `fk_returning_book` FOREIGN KEY (`id_book`) REFERENCES `tb_books` (`id`),
   CONSTRAINT `fk_returning_borrowing` FOREIGN KEY (`id_borrowing`) REFERENCES `tb_borrowing` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Dumping data for table db_library.tb_returning: ~6 rows (approximately)
-DELETE FROM `tb_returning`;
-INSERT INTO `tb_returning` (`id`, `id_book`, `id_borrowing`, `late_fee`) VALUES
-	('a6ce1248-73dc-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', '3abb6abb-73db-11ed-8226-cb08c4c1791c', 2001),
-	('a9d8f103-73dc-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', '51e01d10-73db-11ed-8226-cb08c4c1791c', 2001),
-	('ac91fdb1-73dc-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', '8fea773d-73d3-11ed-8226-cb08c4c1791c', 2001),
-	('af4d0350-73dc-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 'c74c3fdb-73da-11ed-8226-cb08c4c1791c', 2001),
-	('b2108834-73dc-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 'e7327ba5-73db-11ed-8226-cb08c4c1791c', 2001),
-	('cc88cb2c-73dc-11ed-8226-cb08c4c1791c', 'ae9a28fc-72f1-11ed-85c7-1570f26e4f41', 'c5b149f1-73dc-11ed-8226-cb08c4c1791c', 2001);
+--
+-- Dumping data for table `tb_returning`
+--
 
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+LOCK TABLES `tb_returning` WRITE;
+/*!40000 ALTER TABLE `tb_returning` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_returning` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-12-23 20:13:58

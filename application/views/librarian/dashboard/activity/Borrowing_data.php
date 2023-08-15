@@ -49,8 +49,8 @@
                                             <td><?= $no++; ?></td>
                                             <td><?= $borrow->name; ?></td>
                                             <td><?= $borrow->title; ?></td>
-                                            <td><?= date('d-m-y', $borrow->borrow_date); ?></td>
-                                            <td><?= date('d-m-y', $borrow->return_date); ?></td>
+                                            <td><?= date('d-M-Y', round($borrow->borrow_date / 1000)); ?></td>
+                                            <td><?= date('d-M-Y', round($borrow->return_date / 1000)); ?></td>
                                             <td><?= $borrow->address; ?></td>
                                             <td><?= $borrow->mobile_phone; ?></td>
                                             <td><?= $borrow->qty; ?></td>

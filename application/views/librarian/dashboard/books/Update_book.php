@@ -33,6 +33,10 @@
                          <input name="publish_year" type="number" class="form-control" value="<?= $book->publish_year ?>" placeholder="Enter title">
                      </div>
                      <div class="form-group">
+                         <label for="">Description</label>
+                         <textarea name="description" class="form-control" placeholder="Enter description"><?= $book->description ?></textarea>
+                     </div>
+                     <div class="form-group">
                          <label for="exampleInputFile">Thumbnail</label>
                          <div class="input-group">
                              <div class="custom-file">

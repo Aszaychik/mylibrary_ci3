@@ -33,8 +33,8 @@ class Activity extends CI_Controller
                 'name' => $this->input->post('name'),
                 'address' => $this->input->post('address'),
                 'mobile_phone' => $this->input->post('mobile_phone'),
-                'borrow_date' => round(microtime(true)),
-                'returning_date' => round(microtime(true) + 604800),
+                'borrow_date' => round(microtime(true) * 1000),
+                'returning_date' => round((microtime(true) * 1000) + 604800000),
                 'qty' => $qty
             );
             $checkStock = $this->BooksModel->updateBookStock($id_book, $qty);
@@ -47,10 +47,11 @@ class Activity extends CI_Controller
     }
     public function returnBook()
     {
+        $late_fee = floor(intval(round(microtime(true) * 1000) / $this->input->post('return_date')) * 2000);
         $data = array(
             'id_book' => $this->input->post('id_book'),
             'id_borrowing' => $this->input->post('id_borrowing'),
-            'late_fee' => round(intval($this->input->post('return_date')) /  round(microtime(true)) * 2000)
+            'late_fee' => $late_fee
         );
         $this->BooksModel->returnBookById($data);
         redirect('librarian/Dashboard/returningData');
